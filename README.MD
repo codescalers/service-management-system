@@ -74,6 +74,3 @@ http://127.0.0.1:8000/admin/
 2. Manage your service systems: Add, edit, and manage your service systems and related configurations like environment variables, network settings, applications, and more.
 3. Search and filter: Use the search fields provided in the admin panel to quickly find and manage specific entries.
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
