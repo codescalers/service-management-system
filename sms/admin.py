@@ -1,119 +1,129 @@
 from django.contrib import admin
+
 from .models import *
-from django.apps import apps
 
-class BaseAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'updated_at',)
-    readonly_fields = ('created_at', 'updated_at',)
+class BaseAdmin(admin.ModelAdmin):    
+    def get_list_display(self, _):
+        return self.list_display + ('service_system', 'created_at', 'updated_at')
 
+@admin.register(EnvironmentVariable)
 class EnvironmentVariableAdmin(BaseAdmin):
-    list_display = ('name', 'value')
+  list_display = ('name', 'value')
 
-class ConfigurationFileAdmin(BaseAdmin):
-    list_display = ('file_path', 'description')
+@admin.register(ConfigurationFile)
+class ConfigurationFileAdmin(admin.ModelAdmin):
+  list_display = ('file_path', 'description')
 
-class DependencyAdmin(BaseAdmin):
-    list_display = ('name', 'version')
+@admin.register(Dependency)
+class DependencyAdmin(admin.ModelAdmin):
+  list_display = ('name', 'version')
 
-class NetworkConfigurationAdmin(BaseAdmin):
-    list_display = ('dns', 'gateway', 'subnet')
+@admin.register(NetworkConfiguration)
+class NetworkConfigurationAdmin(admin.ModelAdmin):
+  list_display = ('dns', 'gateway', 'subnet')
 
-class ApplicationAdmin(BaseAdmin):
-    list_display = ('name', 'version', 'description')
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+  list_display = ('name', 'version','description')
 
-class PortAdmin(BaseAdmin):
-    list_display = ('application', 'port_number', 'protocol')
+@admin.register(Port)
+class PortAdmin(admin.ModelAdmin):
+  list_display = ('application', 'port_number', 'protocol')
 
-class LoggingConfigurationAdmin(BaseAdmin):
-    list_display = ('log_file_path', 'log_level')
+@admin.register(LoggingConfiguration)
+class LoggingConfigurationAdmin(admin.ModelAdmin):
+  list_display = ('log_file_path', 'log_level')
 
-class MonitoringToolAdmin(BaseAdmin):
-    list_display = ('name', 'version')
+@admin.register(MonitoringTool)
+class MonitoringToolAdmin(admin.ModelAdmin):
+  list_display = ('name', 'version')
 
-class HealthCheckAdmin(BaseAdmin):
-    list_display = ('endpoint', 'criteria')
+@admin.register(HealthCheck)
+class HealthCheckAdmin(admin.ModelAdmin):
+  list_display = ('endpoint', 'criteria')
 
-class ContainerizationAdmin(BaseAdmin):
-    list_display = ('container_runtime', 'orchestration_tool', 'image_info')
+@admin.register(Containerization)
+class ContainerizationAdmin(admin.ModelAdmin):
+  list_display = ('container_runtime', 'orchestration_tool', 'image_info')
 
-class DeploymentToolAdmin(BaseAdmin):
-    list_display = ('name', 'version', 'info')
+@admin.register(DeploymentTool)
+class DeploymentToolAdmin(admin.ModelAdmin):
+  list_display = ('name', 'version', 'info')
 
-class ScalingConfigurationAdmin(BaseAdmin):
-    list_display = ('scaling_policy', 'auto_scaling_trigger')
+@admin.register(ScalingConfiguration)
+class ScalingConfigurationAdmin(admin.ModelAdmin):
+  list_display = ('scaling_policy', 'auto_scaling_trigger')
 
-class BackupConfigurationAdmin(BaseAdmin):
-    list_display = ('backup_schedule', 'backup_location')
+@admin.register(BackupConfiguration)
+class BackupConfigurationAdmin(admin.ModelAdmin):
+  list_display = ('backup_schedule', 'backup_location')
 
-class UserPermissionAdmin(BaseAdmin):
-    list_display = ('user', 'permissions')
+@admin.register(UserPermission)
+class UserPermissionAdmin(admin.ModelAdmin):
+  list_display = ('user', 'permissions')
 
-class DisasterRecoveryAdmin(BaseAdmin):
-    list_display = ('recovery_plan', 'backup_locations', 'testing_schedule')
+@admin.register(DisasterRecovery)
+class DisasterRecoveryAdmin(admin.ModelAdmin):
+  list_display = ('recovery_plan', 'backup_locations', 'testing_schedule')
 
-class RunbookAdmin(BaseAdmin):
-    list_display = ('run_command', 'verify_command', 'upgrade_command', 'rollback_command')
+@admin.register(Runbook)
+class RunbookAdmin(admin.ModelAdmin):
+  list_display = ('run_command', 'verify_command', 'upgrade_command', 'rollback_command')
 
-class BaseInline(admin.StackedInline):
+
+class BaseAdminInline(admin.StackedInline):
     extra = 1
 
-class EnvironmentVariableInline(BaseInline):
-    model = EnvironmentVariable
+class EnvironmentVariableInline(BaseAdminInline):
+  model = EnvironmentVariable
 
-class ConfigurationFileInline(BaseInline):
-    model = ConfigurationFile
+class ConfigurationFileInline(BaseAdminInline):
+  model = ConfigurationFile
 
-class DependencyInline(BaseInline):
-    model = Dependency
+class DependencyInline(BaseAdminInline):
+  model = Dependency
 
-class NetworkConfigurationInline(BaseInline):
-    model = NetworkConfiguration
+class NetworjConfiguartionInline(BaseAdminInline):
+  model = NetworkConfiguration
 
-class ApplicationInline(BaseInline):
-    model = Application
+class ApplicationInline(BaseAdminInline):
+  model = Application
 
-class PortInline(BaseInline):
-    model = Port
+class PortInline(BaseAdminInline):
+  model = Port
 
-class LoggingConfigurationInline(BaseInline):
-    model = LoggingConfiguration
+class LoggingConfigurationInline(BaseAdminInline):
+  model = LoggingConfiguration
 
-class MonitoringToolInline(BaseInline):
-    model = MonitoringTool
+class MonitoringToolInline(BaseAdminInline):
+  model = MonitoringTool
 
-class HealthCheckInline(BaseInline):
-    model = HealthCheck
+class HealthCheckInline(BaseAdminInline):
+  model = HealthCheck
 
-class ContainerizationInline(BaseInline):
-    model = Containerization
+class ContainerizationInline(BaseAdminInline):
+  model = Containerization
 
-class DeploymentToolInline(BaseInline):
+class DeploymentToolInline(BaseAdminInline):
     model = DeploymentTool
 
-class ScalingConfigurationInline(BaseInline):
-    model = ScalingConfiguration
+class ScalingConfigurationInline(BaseAdminInline):
+  model = ScalingConfiguration
 
-class BackupConfigurationInline(BaseInline):
-    model = BackupConfiguration
+class BackupConfigurationInline(BaseAdminInline):
+  model = BackupConfiguration
 
-class UserPermissionInline(BaseInline):
-    model = UserPermission
+class UserPermissionInline(BaseAdminInline):
+  model = UserPermission
 
-class DisasterRecoveryInline(BaseInline):
-    model = DisasterRecovery
+class DisasterRecoveryInline(BaseAdminInline):
+  model = DisasterRecovery
 
-class RunbookInline(BaseInline):
-    model = Runbook
+class RunbookInline(BaseAdminInline):
+  model = Runbook
 
-models = apps.get_app_config('sms').get_models()
-# register all models except for ServiceSystem
-for model in models:
-    if model.__name__ != "ServiceSystem":
-        admin.site.register(model)
-
+@admin.register(ServiceSystem)
 class ServiceSystemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location', 'hostname', 'ip_address', 'operating_system', 'created_at', 'updated_at')
-    search_fields = ('name', 'location', 'hostname', 'ip_address', 'operating_system')
-    inlines = [EnvironmentVariableInline, ConfigurationFileInline, DependencyInline, NetworkConfigurationInline, ApplicationInline, PortInline, LoggingConfigurationInline, MonitoringToolInline, HealthCheckInline, ContainerizationInline, DeploymentToolInline, ScalingConfigurationInline, BackupConfigurationInline, UserPermissionInline, DisasterRecoveryInline, RunbookInline]
-
-admin.site.register(ServiceSystem, ServiceSystemAdmin)
+  list_display = ('name', 'location', 'hostname', 'ip_address', 'operating_system', 'created_at', 'updated_at')
+  search_fields = ('name', 'location', 'hostname', 'ip_address', 'operating_system')
+  inlines = [EnvironmentVariableInline, ConfigurationFileInline, DependencyInline, NetworjConfiguartionInline, ApplicationInline, PortInline, LoggingConfigurationInline, MonitoringToolInline, HealthCheckInline, ContainerizationInline, DeploymentToolInline, ScalingConfigurationInline, BackupConfigurationInline, UserPermissionInline, DisasterRecoveryInline, RunbookInline]
