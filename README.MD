@@ -20,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-1. **Clone the repository**:
+1. **Clone the repository**
 
     ```bash
     git clone https://github.com/zaelgohary/service-management-system.git
@@ -44,7 +44,7 @@ Before you begin, ensure you have met the following requirements:
       python manage.py migrate
       ```
 
-4. **Create a superuser**:
+4. **Create a superuser**
 
     ```bash
     python manage.py createsuperuser
