@@ -35,13 +35,7 @@ Before you begin, ensure you have met the following requirements:
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
-3. **Install dependencies**
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Set up the database**
+3. **Set up the database**
 
     Update the DATABASES setting in settings.py if you are using a different database (e.g., PostgreSQL).
     Then, run the following commands to apply migrations:
@@ -50,13 +44,13 @@ Before you begin, ensure you have met the following requirements:
       python manage.py migrate
       ```
 
-5. **Create a superuser**:
+4. **Create a superuser**:
 
     ```bash
     python manage.py createsuperuser
     ```
 
-6. **Run the development server**
+5. **Run the development server**
 
     ```bash
     python manage.py runserver
@@ -73,4 +67,3 @@ http://127.0.0.1:8000/admin/
 1. Log in to the admin panel using the superuser account you created.
 2. Manage your service systems: Add, edit, and manage your service systems and related configurations like environment variables, network settings, applications, and more.
 3. Search and filter: Use the search fields provided in the admin panel to quickly find and manage specific entries.
-
