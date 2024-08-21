@@ -23,16 +23,16 @@ Before you begin, ensure you have met the following requirements:
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/zaelgohary/service-management-system.git
-    cd your-repo-name
+    git clone https://github.com/codescalers/service-management-system.git
+    cd service-management-system
 
     `````
 
 2. **Create a virtual environment (recommended)**
 
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    python3 -m venv venv
+    source env/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 3. **Set up the database**
